@@ -7,6 +7,7 @@ class Connexion{
 	private $connexion;
 	
 	function __construct($serveur, $usager, $motPasse, $baseDonnees){
+
 		$this->serveur=$serveur;
 		$this->usager=$usager;
 		$this->motPasse=$motPasse;

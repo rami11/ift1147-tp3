@@ -29,7 +29,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-lg-12">
-                <form id="form-login" method="post">
+                <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
                   <!-- username -->
                   <div class="form-group">
                     <label for="login-username">Nom d'utilisateur ou courriel</label>
@@ -44,7 +44,8 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-sm-6 offset-sm-3">
-                        <button name="btn-login" id="btn-login" class="form-control btn btn-primary" onclick="loginButtonClicked();">Se connecter</button>
+                        <!-- <input type="button" name="btn-login" id="btn-login" class="form-control btn btn-primary" value="Se connecter" onclick="loginButtonClicked();"> -->
+                        <button type="submit" name="btn-login" id="btn-login" class="form-control btn btn-primary">Se connecter</button>
                       </div>
                     </div>
                   </div>
@@ -52,7 +53,6 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-sm-6 offset-sm-3">
-                        <!-- <a class="form-control btn btn-danger" onclick="$('navbar').show(); $('view-login').hide();">Annuler</a> -->
                         <a class="form-control btn btn-danger" href="../index.php">Annuler</a>
                       </div>
                     </div>
