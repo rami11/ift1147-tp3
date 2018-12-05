@@ -1,29 +1,38 @@
 <?php
 	require_once("../includes/modele.inc.php");
+
 	$tabRes=array();
-	function enregistrer(){
+
+	function enregistrer() {
 		global $tabRes;	
-		$titre=$_POST['titre'];
-		$duree=$_POST['duree'];
-		$res=$_POST['res'];
+		$title = $_POST['title'];
+		$duration = $_POST['duration'];
+		$director = $_POST['director'];
+		$category = $_POST['category'];
+		$price = $_POST['price'];
+
 		try{
-			$unModele=new filmsModele();
-			$pochete=$unModele->verserFichier("pochettes", "pochette", "avatar.jpg",$titre);
-			$requete="INSERT INTO films VALUES(0,?,?,?,?)";
-			$unModele=new filmsModele($requete,array($titre,$duree,$res,$pochete));
+			$unModele = new filmsModele();
+			$image = $unModele->verserFichier("img", "image", "avatar.png",$title);
+			$requete="INSERT INTO films (title, director, category, duration, price, image) VALUES(?,?,?,?,?,?)";
+			$unModele=new filmsModele($requete,array($title, $director, $category, $duration, $price, $image));
 			$stmt=$unModele->executer();
-			$tabRes['action']="enregistrer";
-			$tabRes['msg']="Film bien enregistre";
-		}catch(Exception $e){
-		}finally{
+			
+			$tabRes['success'] = true;
+			$tabRes['msg'] = "Film <string>{$title}</strong> bien enregistre";
+
+		} catch(Exception $e){
+			$tabRes['success'] = false;
+			$tabRes['msg'] = $e->getMessage();
+		} finally{
 			unset($unModele);
 		}
 	}
 	
-	function lister(){
+	function lister() {
 		global $tabRes;
 		$tabRes['action']="lister";
-		$requete="SELECT * FROM films";
+		$requete="SELECT * FROM films ORDER BY id DESC";
 		try{
 			 $unModele=new filmsModele($requete,array());
 			 $stmt=$unModele->executer();
@@ -56,24 +65,29 @@
 	
 	function enlever(){
 		global $tabRes;	
-		$idf=$_POST['numE'];
-		try{
-			$requete="SELECT * FROM films WHERE idf=?";
+		$idf=$_POST['id'];
+		$tabRes['id'] = $idf;
+		try {
+			$requete="SELECT * FROM films WHERE id=?";
 			$unModele=new filmsModele($requete,array($idf));
 			$stmt=$unModele->executer();
 			if($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
-				$unModele->enleverFichier("pochettes",$ligne->pochette);
-				$requete="DELETE FROM films WHERE idf=?";
+				$unModele->enleverFichier("img",$ligne->image);
+				$requete="DELETE FROM films WHERE id=?";
 				$unModele=new filmsModele($requete,array($idf));
 				$stmt=$unModele->executer();
 				$tabRes['action']="enlever";
 				$tabRes['msg']="Film ".$idf." bien enleve";
+				$tabRes['success']=true;
 			}
 			else{
+				$tabRes['success']=false;
 				$tabRes['action']="enlever";
 				$tabRes['msg']="Film ".$idf." introuvable";
 			}
 		}catch(Exception $e){
+			$tabRes['success']=false;
+			$tabRes['msg']=$e->getMessage();
 		}finally{
 			unset($unModele);
 		}

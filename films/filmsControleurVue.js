@@ -1,11 +1,11 @@
 //vue films
 function listerF(listFilms){
 	rep='<div style="margin: 10px; position: relative;">';
-    rep+='<div>';
-      rep+='<h4 style="color: #218838">Liste des films</h4>';
-    rep+='</div>';
-    rep+='<div>';
-      rep+='<a class="btn btn-success" href="viewsfilms/film.php">Ajouter</a>';
+    // rep+='<div>';
+    //   rep+='<h4 style="color: #218838">Liste des films</h4>';
+    // rep+='</div>';
+    rep+='<div style="margin-top: 10px">';
+      rep+='<button class="btn btn-success" data-toggle="modal" data-target="#modal">Ajouter</button>';
     rep+='</div>';
   rep+='</div>';
   rep+='<table class="table table-striped" style="">';
@@ -31,7 +31,7 @@ function listerF(listFilms){
           rep+='<td>' + film.price + '</td>';
           rep+='<td>';
             rep+='<a class="btn btn-success btn-sm" href="viewsfilms/updateForm.php?id=<?php echo $film->getId(); ?>">Modifier</a> ';
-            rep+='<a class="btn btn-danger btn-sm" href="viewsfilms/deleteFilm.php?id=<?php echo $film->getId(); ?>">Supprimer</a>';
+            rep+='<button class="btn btn-danger btn-sm" onclick="deleteFilm('+ film.id +')" ?>Supprimer</button>';
           rep+='</td>';
         rep+='</tr>';
       });
@@ -68,7 +68,7 @@ function afficherFiche(reponse){
 
 }
 
-var filmsVue=function(reponse){
+var filmsVue = function(reponse) {
 	var action=reponse.action; 
 	switch(action){
 		case "enregistrer" :

@@ -44,7 +44,7 @@ function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 	return $pochette;
 }
 function enleverFichier($dossier,$pochette){
-	if($pochette!="avatar.jpg"){
+	if($pochette!="avatar.png"){
 		$rmPoc="../$dossier/".$pochette;
 		$tabFichiers = glob("../$dossier/*");
 		//print_r($tabFichiers);
