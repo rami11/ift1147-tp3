@@ -22,13 +22,12 @@ function doLogin() {
 		if ($count == 1 && $row->password == $hashedPassword) {
 			session_start();
 			$_SESSION['user_session'] = $row->id;
+			$_SESSION['username'] = $row->username;
 			$_SESSION['email'] = $row->email;
 			$_SESSION['admin'] = $row->admin;
 
 			$resultArray['success'] = true;
 			$resultArray['message'] = "Vous vous êtes connecter!";
-			$resultArray['email'] = $row->email;
-			$resultArray['admin'] = $row->admin;
 
 		} else{
 			$resultArray['success'] = false;

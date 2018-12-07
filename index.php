@@ -1,11 +1,12 @@
   <?php session_start();
     echo "Hello, world!<br>";
-    echo $_SESSION['email'];
     if (isset($_SESSION['email'])) {
-      echo "<br>set";
+      echo "set<br>";
     } else {
-      echo "<br>not set";
+      echo "not set<br>";
     }
+    echo $_SESSION['email']."<br>";
+    echo "Is Admin: ".$_SESSION['admin']."<br>";
   ?>
 
   <!DOCTYPE html>
@@ -39,18 +40,23 @@
               Catégories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="index.php">Tous les films</a>
+              <a class="dropdown-item" href="index.php"><?php echo empty($_GET['category']) ? "Tous les films" : $_GET['category']; ?></a>
               <div class="dropdown-divider"></div>
               <div id="dropdown-categories"><!-- Here shown the categories --></div>
             </div>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li id="nav-item-cart" class="nav-item" style="display: none"><a class="nav-link" href="viewsfilms/cart.php"><i class="fas fa-shopping-cart"></i> 0</a></li>
+          <?php if (isset($_SESSION['username'])) : ?>
+            <?php if ($_SESSION['admin'] == false) : ?>
+              <li id="nav-item-cart" class="nav-item"><a class="nav-link" href="viewsfilms/cart.php"><i class="fas fa-shopping-cart"></i><?php echo isset($_SESSION['cart_item']) ? $_SESSION['nb-item'] : " 0"; ?></a></li>
+            <?php endif ?>
           <li id="nav-item-email" class="nav-item"><a id="nav-item-anchor-email" class="nav-link"><?php echo $_SESSION['email'] ?></a></li>
-          <li id="nav-item-logout" class="nav-item" style="display: none"><a class="nav-link" href="viewsfilms/doLogout.php"><i class="fas fa-sign-out-alt"></i> Deconnexion</a></li>
-          <li id="nav-item-register"class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-register"><i class="fas fa-user-alt"></i> Devenir membre</a></li>
-          <li id="nav-item-login" class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+          <li id="nav-item-logout" class="nav-item"><a class="nav-link" href="viewsfilms/doLogout.php"><i class="fas fa-sign-out-alt"></i> Deconnexion</a></li>
+          <?php else : ?>
+            <li id="nav-item-register"class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-register"><i class="fas fa-user-alt"></i> Devenir membre</a></li>
+            <li id="nav-item-login" class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+          <?php endif ?>
         </ul>
       </div>
     </nav>
@@ -63,11 +69,15 @@
 
     <div style=" position: relative; margin-top: 66px">
 
-      <div id="message" style="margin-left: 10px; margin-right: 10px; ">
-        <!-- Message -->
-      </div>  
+      <?php if ($_SESSION['admin']) : ?>
+        <div id="message" style="margin-left: 10px; margin-right: 10px; ">
+          <!-- Message -->
+        </div>  
 
-      <div id="view-admin"><!-- Admin view --></div>
+        <div id="view-admin"><!-- Admin view --></div>
+      <?php else : ?>
+        <div id="view-member"><!-- Member view --></div>
+      <?php endif ?>
 
     </div>
 
