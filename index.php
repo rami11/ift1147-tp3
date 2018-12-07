@@ -139,27 +139,20 @@
                   <div id="error">
                     <!-- error will be shown here ! -->
                   </div>
-                 <!--  <div class="card card-login"> -->
-                    <!-- card body -->
-                    <!-- <div class="card-body">
-                      <div class="row">
-                        <div class="col-lg-12"> -->
-                          <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
-                            <!-- username -->
-                            <div class="form-group">
-                              <label for="login-username">Nom d'utilisateur ou courriel</label>
-                              <input type="text" name="login-username" id="login-username" class="form-control" autofocus>
-                            </div>
-                            <!-- password -->
-                            <div class="form-group">
-                              <label for="login-password">Mot de passe</label>
-                              <input type="password" name="login-password" id="login-password" class="form-control">
-                            </div>
-                          </form>
-                        <!-- </div>
-                      </div>
-                    </div> -->
-               <!--    </div> -->
+
+                  <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
+                    <!-- username -->
+                    <div class="form-group">
+                      <label for="login-username">Nom d'utilisateur ou courriel</label>
+                      <input type="text" name="login-username" id="login-username" class="form-control" autofocus>
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                      <label for="login-password">Mot de passe</label>
+                      <input type="password" name="login-password" id="login-password" class="form-control">
+                    </div>
+                  </form>
+
                 </div>
               </div>
 
@@ -186,3 +179,4 @@
 
   </body>
   </html>
+  
