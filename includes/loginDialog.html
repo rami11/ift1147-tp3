@@ -8,15 +8,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="form-add-film" method="post">
+      <form id="form-login" method="post">
         <div class="modal-body">
 
 
           <div class="row">
             <div class="col-md-12">
-              <div id="error">
-                <!-- error will be shown here ! -->
-              </div>
+              <div id="error"><!-- error will be shown here ! --></div>
 
               <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
                 <!-- username -->
@@ -38,7 +36,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal-login input').val('');">Annuler</button>
-          <button class="btn btn-primary" onclick="addFilmButtonClicked();">Se connecter</button>
+          <button class="btn btn-primary" onclick="loginButtonClicked();">Se connecter</button>
         </div>
       </form>
     </div>

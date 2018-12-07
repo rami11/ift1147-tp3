@@ -3,6 +3,7 @@ require_once("../includes/modele.inc.php");
 
 function doLogin() {
 	//session_start();
+	$resultArray = array();
 
 	$username = $_POST['login-username'];
 	$password = $_POST['login-password'];
@@ -19,17 +20,26 @@ function doLogin() {
 		$hashedPassword = hash('sha256', $saltedPassword);
 
 		if ($count == 1 && $row->password == $hashedPassword) {
+			session_start();
 			$_SESSION['user_session'] = $row->id;
-			$_SESSION['email'] = $row->eamil;
+			$_SESSION['email'] = $row->email;
 			$_SESSION['admin'] = $row->admin;
-			echo true;
+
+			$resultArray['success'] = true;
+			$resultArray['message'] = "Vous vous êtes connecter!";
+			$resultArray['email'] = $row->email;
+			$resultArray['admin'] = $row->admin;
+
 		} else{
-			echo "Le nom d'utilisateur ou le mot de passe est incorrect.";
+			$resultArray['success'] = false;
+			$resultArray['message'] = "Le nom d'utilisateur ou le mot de passe est incorrect.";
 		}
 
 	} catch(PDOException $e) {
-		echo $e->getMessage();
+		$resultArray['message'] = $e->getMessage();
 	}
+
+	echo json_encode($resultArray);
 }
 
 doLogin();
