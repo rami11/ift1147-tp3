@@ -1,0 +1,46 @@
+<!-- Login dialog -->
+<div class="modal fade" id="modal-login" role="dialog" aria-labelledby="modal-login-title" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-login-title" style="color: #218838;">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="form-add-film" method="post">
+        <div class="modal-body">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div id="error">
+                <!-- error will be shown here ! -->
+              </div>
+
+              <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
+                <!-- username -->
+                <div class="form-group">
+                  <label for="login-username">Nom d'utilisateur ou courriel</label>
+                  <input type="text" name="login-username" id="login-username" class="form-control" autofocus>
+                </div>
+                <!-- password -->
+                <div class="form-group">
+                  <label for="login-password">Mot de passe</label>
+                  <input type="password" name="login-password" id="login-password" class="form-control">
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal-login input').val('');">Annuler</button>
+          <button class="btn btn-primary" onclick="addFilmButtonClicked();">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
