@@ -38,7 +38,7 @@
           <li id="nav-item-cart" class="nav-item" style="display: none"><a class="nav-link" href="viewsfilms/cart.php"><i class="fas fa-shopping-cart"></i> 0</a></li>
           <li id="nav-item-email" class="nav-item"><a class="nav-link"><?php echo $_SESSION['email']." Hi" ?></a></li>
           <li id="nav-item-logout" class="nav-item" style="display: none"><a class="nav-link" href="viewsfilms/doLogout.php"><i class="fas fa-sign-out-alt"></i> Deconnexion</a></li>
-          <li id="nav-item-register"class="nav-item"><a class="nav-link" href="register/index.php""><i class="fas fa-user-alt"></i> Devenir membre</a></li>
+          <li id="nav-item-register"class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-register"><i class="fas fa-user-alt"></i> Devenir membre</a></li>
           <li id="nav-item-login" class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#modal-login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
         </ul>
       </div>
@@ -47,6 +47,8 @@
     <?php include 'includes/addFilmDialog.html'; ?>
 
     <?php include 'includes/loginDialog.html'; ?>
+
+    <?php include 'includes/registerDialog.html'; ?>
 
     <div style=" position: relative; margin-top: 66px">
 
