@@ -1,0 +1,24 @@
+.card.card-film {
+	margin: 5px;
+	width: 12rem;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px #E0E0E0 solid;
+}
+
+.button-add {
+	color: #FFFFFF;
+	background-color: #029f5b;
+	border-radius: 2px;
+	/*margin-top:5px;*/
+}
+
+.number-picker {
+	border: .5px #BDBDBD solid;
+	border-radius: 2px;
+}
+
+img.img-film:hover {
+	cursor: pointer;
+}

@@ -2,7 +2,6 @@
 require_once("../includes/modele.inc.php");
 
 function doLogin() {
-	//session_start();
 	$resultArray = array();
 
 	$username = $_POST['login-username'];
@@ -42,5 +41,4 @@ function doLogin() {
 }
 
 doLogin();
-
 ?>

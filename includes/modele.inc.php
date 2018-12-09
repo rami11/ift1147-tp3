@@ -60,5 +60,4 @@ function enleverFichier($dossier,$pochette){
 }
 }//fin de la classe
 
-
-?>	
+?>

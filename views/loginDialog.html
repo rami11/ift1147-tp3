@@ -8,15 +8,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="form-login" method="post">
+      <!-- <form id="form-login" method="post"> -->
+
         <div class="modal-body">
-
-
           <div class="row">
             <div class="col-md-12">
-              <div id="error"><!-- error will be shown here ! --></div>
+              <div id="error"><!-- error message will be shown here ! --></div>
 
-              <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
+              <form id="form-login" action="javascript:void(0);">
                 <!-- username -->
                 <div class="form-group">
                   <label for="login-username">Nom d'utilisateur ou courriel</label>
@@ -31,14 +30,16 @@
 
             </div>
           </div>
-
-
         </div>
+
         <div class="modal-footer">
-          <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal-login input').val('');">Annuler</button>
-          <button class="btn btn-primary" onclick="loginButtonClicked();">Se connecter</button>
+          <button id="btn-login" class="btn btn-primary" onclick="loginButtonClicked();">Se connecter</button>
+          <!-- data-dismiss="modal" -->
+          <button class="btn btn-danger" onclick="closeDialog('#modal-login');//$('#modal-login input').val('');">Annuler</button>
         </div>
-      </form>
+
+      <!-- </form> -->
+
     </div>
   </div>
 </div>

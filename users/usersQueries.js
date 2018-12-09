@@ -13,11 +13,14 @@ function loginButtonClicked() {
 			console.log(response);
 			if(response.success) {
 
-				$(function () {
-	   				$('#modal-login').modal('toggle');
-				});
-				location.reload();
-	            //$('#nav-item-anchor-email').html(response.email);
+				// $(function () {
+	   // 				$('#modal-login').modal('toggle');
+				// });
+				// location.reload();
+
+				//$('#message').html(response.message);
+				closeDialog('#modal-login');
+
 	        } else {
 	        	//alert(response);
 	            $('#error').fadeIn(1000, function() {

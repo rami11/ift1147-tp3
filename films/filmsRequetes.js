@@ -13,7 +13,6 @@ function addFilmButtonClicked(){
 		processData : false,
 		success : function(response) {
 			console.log(response);
-
 			
 				$(function () {
 	   				$('#modal').modal('toggle');

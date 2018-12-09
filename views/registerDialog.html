@@ -2,18 +2,22 @@
 <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-register-title" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+
+      <!-- modal header -->
       <div class="modal-header">
         <h5 class="modal-title" id="modal-register-title" style="color: #218838;">Inscrire</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="form-register" method="post">
 
-        <div id="view-register" class="container">
+
+        <!-- body -->
+        <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
-              <!-- <form id="register-form" style="display: block;"> -->
+      
+                <form id="form-register" action="javascript:void(0);">
                 <!-- username -->
                 <div class="form-group">
                   <!-- is-invalid -->
@@ -35,17 +39,19 @@
                   <label for="confirm-password">Confirmer mot de passe</label>
                   <input type="password" name="confirm-password" id="confirm-password" class="form-control">
                 </div>
-                
-                <!-- </form> -->    
+
+                </form>
+                 
               </div>
             </div>
           </div>
 
+          <!-- footer -->
           <div class="modal-footer">
-            <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal input').val('');">Annuler</button>
-            <button class="btn btn-success" onclick="addFilmButtonClicked();">Ajouter</button>
+            <button class="btn btn-success" onclick="addFilmButtonClicked();">Inscrire</button>
+            <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal-register input').val('');">Annuler</button>
           </div>
-        </form>
-      </div>
-    </div>
+
+      </div> <!-- content -->
+    </div> <!-- dialog -->
   </div>

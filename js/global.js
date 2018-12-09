@@ -26,28 +26,16 @@ function valider(){
 	return false;
 }
 
-function loginNavItemClicked() {
-	$('#navbar').hide();
-	$('#view-admin').hide();
-	$('#view-login').show();
+function closeDialog(id) {
+	$(function () {
+	   	$(id).modal('toggle');
+	});
+	location.reload();
 }
 
-function registerNavItemClicked() {
-	$('#navbar').hide();
-	$('#view-admin').hide();
-	$('#view-register').show();
-}
+//lister();
 
-function cancelButtonClicked() {
-	$('#navbar').show();
-	$('#view-admin').show();
-	$('#view-login').hide();
-	$('#view-register').hide();
-}
-
-lister();
-
-showCategories();
+//showCategories();
 //Cas d'un button
 /*
 function valider(){
