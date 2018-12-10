@@ -36,6 +36,8 @@ function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 		$tmp = $_FILES[$inputNom]['tmp_name'];
 		$fichier= $_FILES[$inputNom]['name'];
 		$extension=strrchr($fichier,'.');
+		//echo "folder to move to: ". $dossier.$nomPochette.$extension . "<br>";
+
 		@move_uploaded_file($tmp,$dossier.$nomPochette.$extension);
 		// Enlever le fichier temporaire chargé
 		@unlink($tmp); //effacer le fichier temporaire

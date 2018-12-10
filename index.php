@@ -30,11 +30,6 @@
 <!-- Navigation Bar -->
 <?php include 'views/navbar.php'; ?>
 
-<?php include 'views/addFilmDialog.html'; ?>
-<?php include 'views/registerDialog.html'; ?>
-<?php include 'views/loginDialog.html'; ?>
-  
-
 <div style=" position: relative; margin-top: 15px">
   <div id="message" style="margin-left: 10px; margin-right: 10px; "></div> 
 
@@ -45,6 +40,11 @@
   <?php endif ?>
 
 </div>
+
+<!-- dialogs -->
+<?php include 'views/registerDialog.html'; ?>
+<?php include 'views/loginDialog.html'; ?>
+<?php include 'views/addFilmDialog.php'; ?>
 
 </body>
 </html>

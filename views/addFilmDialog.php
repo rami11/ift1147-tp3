@@ -1,5 +1,5 @@
 <!-- Add film dialog -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,7 +20,7 @@
 
                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" name="title">
+                  <input type="text" class="form-control" id="title" name="title" value="<?php echo $film->title; ?>">
                 </div>
 
               </div>
@@ -50,7 +50,10 @@
               <!-- category -->
               <div class="form-group">
                 <select name="category" id="category" class="form-control">
-                  <option disabled selected value placeholder="hello">Catégorie</option>                  
+                  <option disabled selected value placeholder="hello">Catégorie</option>
+                  <?php foreach ($categories as $category) : ?>
+                      <option><?php echo $category->name ?></option>
+                  <?php endforeach ?>
                 </select>
               </div>
 
