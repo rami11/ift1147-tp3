@@ -17,6 +17,7 @@ function addFilm(){
 			if (response.success) {
 				toggleDialog('#modal');
 				showMessage(response);
+				showAddedFilm(response.film);
 				
 				//filmsVue(response);
 				//lister();

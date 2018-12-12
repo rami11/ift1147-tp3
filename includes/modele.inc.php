@@ -37,9 +37,14 @@ function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 		$fichier= $_FILES[$inputNom]['name'];
 		$extension=strrchr($fichier,'.');
 		//echo "folder to move to: ". $dossier.$nomPochette.$extension . "<br>";
-
-		@move_uploaded_file($tmp,$dossier.$nomPochette.$extension);
-		// Enlever le fichier temporaire chargé
+ 
+		// var_dump( $dossier.$nomPochette.$extension );
+		// echo __FILE__."";
+		// echo " -- ";
+		// echo "../".$dossier.$nomPochette.$extension;
+		@move_uploaded_file($tmp,"../".$dossier.$nomPochette.$extension);
+		// echo move_uploaded_file($tmp,"/var/www/html/ift1147-tp3/img/".$nomPochette.$extension);
+		// Enlever le fichier temporaire chargï¿½
 		@unlink($tmp); //effacer le fichier temporaire
 		$pochette=$nomPochette.$extension;
 	}

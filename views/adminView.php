@@ -20,6 +20,7 @@
       </tr>
     </thead>
     <tbody>
+      <tr id="row-film" style="display: none;"></tr>
       <?php foreach ($films as $film) : ?>
         <tr>
           <td scope="row"><img src="<?php echo 'img/'.$film->image; ?>" style="width:50px; height: 55px;" /></td>

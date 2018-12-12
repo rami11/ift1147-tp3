@@ -19,7 +19,7 @@
 			return;
 		}
 		// if (empty($director)) {
-		//  	$tabRes['msg'] .= "Le réalisateur est obligatoire.<br>";
+		//  	$tabRes['msg'] .= "Le rï¿½alisateur est obligatoire.<br>";
 		//  	return;
 		// }
 		if (empty($category)) {
@@ -27,7 +27,7 @@
 			return;
 		}
 		if (empty($duration)) {
-			$tabRes['msg'] .= "La durée est obligatoire.<br>";
+			$tabRes['msg'] .= "La durï¿½e est obligatoire.<br>";
 			return;
 		}
 		if (empty($price)) {
@@ -39,12 +39,17 @@
 			$unModele = new filmsModele();
 			$image = $unModele->verserFichier("img", "image", "avatar.png",$title);
 			$requete="INSERT INTO films (title, director, category, duration, price, image) VALUES(?,?,?,?,?,?)";
-			$unModele=new filmsModele($requete,array($title, $director, $category, $duration, $price, $image));
+			$unModele = new filmsModele($requete,array($title, $director, $category, $duration, $price, $image));
 			$stmt=$unModele->executer();
-			
 			$tabRes['success'] = true;
-			$tabRes['msg'] = "Film <strong>{$title}</strong> bien enregistré";
+			$tabRes['msg'] = "Film <strong>{$title}</strong> bien enregistrÃ©";
 
+			$tabRes['film']['title'] = $title;
+			$tabRes['film']['director'] = $director;
+			$tabRes['film']['category'] = $category;
+			$tabRes['film']['duration'] = $duration;
+			$tabRes['film']['price'] = $price;
+			$tabRes['film']['image'] = $image;
 		} catch(Exception $e){
 			$tabRes['msg'] = $e->getMessage();
 		} finally{
@@ -163,7 +168,7 @@
 		}
 	}
 	//******************************************************
-	//Contrôleur
+	//Contrï¿½leur
 	$action=$_POST['action'];
 	switch($action){
 		case "enregistrer" :
