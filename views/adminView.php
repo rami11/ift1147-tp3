@@ -1,10 +1,9 @@
 <div style="margin: 25px">
   <div style="margin: 10px; position: relative;">
-    <div>
+    <!-- <div>
       <h4 style="color: #218838">Liste des films</h4>
-    </div>
+    </div> -->
     <div>
-      <!-- <a class="btn btn-success" href="views/addFilmDialog.html">Ajouter</a> -->
       <button class="btn btn-success" data-toggle="modal" data-target="#modal">Ajouter</button>
     </div>
   </div>
@@ -32,7 +31,6 @@
           <td>
             <a class="btn btn-success btn-sm" href="viewsfilms/updateForm.php?id=<?php echo $film->id; ?>">Modifier</a>
             <button class="btn btn-danger btn-sm" onclick="deleteFilm(<?php echo $film->id ?>)">Supprimer</button>
-            <!-- href="viewsfilms/deleteFilm.php?id=<?php echo $film->id; ?>" -->
           </td>
         </tr>
       <?php endforeach ?>

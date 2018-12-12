@@ -11,6 +11,30 @@
 		$category = $_POST['category'];
 		$price = $_POST['price'];
 
+		$tabRes['success'] = false;
+
+		$tabRes['msg'] = "";
+		if (empty($title)) {
+			$tabRes['msg'] .= "Le titre est obligatoire.<br>";
+			return;
+		}
+		// if (empty($director)) {
+		//  	$tabRes['msg'] .= "Le réalisateur est obligatoire.<br>";
+		//  	return;
+		// }
+		if (empty($category)) {
+			$tabRes['msg'] .= "La categorie est obligatoire.<br>";
+			return;
+		}
+		if (empty($duration)) {
+			$tabRes['msg'] .= "La durée est obligatoire.<br>";
+			return;
+		}
+		if (empty($price)) {
+			$tabRes['msg'] .= "Le prix est obligatoire.<br>";
+			return;
+		}
+
 		try{
 			$unModele = new filmsModele();
 			$image = $unModele->verserFichier("img", "image", "avatar.png",$title);
@@ -19,10 +43,9 @@
 			$stmt=$unModele->executer();
 			
 			$tabRes['success'] = true;
-			$tabRes['msg'] = "Film <string>{$title}</strong> bien enregistre";
+			$tabRes['msg'] = "Film <strong>{$title}</strong> bien enregistré";
 
 		} catch(Exception $e){
-			$tabRes['success'] = false;
 			$tabRes['msg'] = $e->getMessage();
 		} finally{
 			unset($unModele);
@@ -68,27 +91,26 @@
 		$idf=$_POST['id'];
 		$tabRes['id'] = $idf;
 		try {
-			$requete="SELECT * FROM films WHERE id=?";
-			$unModele=new filmsModele($requete,array($idf));
-			$stmt=$unModele->executer();
-			if($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
+			$requete = "SELECT * FROM films WHERE id=?";
+			$unModele = new filmsModele($requete, array($idf));
+			$stmt = $unModele->executer();
+			if ($ligne=$stmt->fetch(PDO::FETCH_OBJ)) {
 				$unModele->enleverFichier("img",$ligne->image);
 				$requete="DELETE FROM films WHERE id=?";
 				$unModele=new filmsModele($requete,array($idf));
 				$stmt=$unModele->executer();
-				$tabRes['action']="enlever";
+				//$tabRes['action']="enlever";
 				$tabRes['msg']="Film ".$idf." bien enleve";
-				$tabRes['success']=true;
-			}
-			else{
-				$tabRes['success']=false;
-				$tabRes['action']="enlever";
+				//$tabRes['success']=true;
+			} else{
+				//$tabRes['success']=false;
+				//$tabRes['action']="enlever";
 				$tabRes['msg']="Film ".$idf." introuvable";
 			}
-		}catch(Exception $e){
-			$tabRes['success']=false;
+		} catch(Exception $e){
+			//$tabRes['success']=false;
 			$tabRes['msg']=$e->getMessage();
-		}finally{
+		} finally{
 			unset($unModele);
 		}
 	}

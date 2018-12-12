@@ -1,5 +1,5 @@
 //requêtes films
-function addFilmButtonClicked(){
+function addFilm(){
 	var formFilm = new FormData(document.getElementById('form-add-film'));
 	formFilm.append('action','enregistrer');
 	$.ajax({
@@ -13,32 +13,15 @@ function addFilmButtonClicked(){
 		processData : false,
 		success : function(response) {
 			console.log(response);
-			
-				$(function () {
-	   				$('#modal').modal('toggle');
-				});
 
-			if (response.success == true) {
-				$('#message').html(
-					'<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-			       response.msg +
-			      		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-			        		'<span aria-hidden="true">&times;</span>' +
-			      		'</button>' +
-			    	'</div>');
-
+			if (response.success) {
+				toggleDialog('#modal');
+				showMessage(response);
 				
 				//filmsVue(response);
-				lister();
-
-			} else if (response.success == false) {
-				$('#message').html(
-					'<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
-			       response.msg +
-			      		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-			        		'<span aria-hidden="true">&times;</span>' +
-			      		'</button>' +
-			    	'</div>');
+				//lister();
+			} else if (!response.success) {
+				showErrorMessage(response);
 			}
 		},
 		fail : function(err) { 
@@ -87,31 +70,33 @@ function showCategories(){
 }
 
 function deleteFilm(id){
-	var formData = new FormData();
-	formData.append('action','enlever');
-	formData.append('id', id);
+	// var formData = new FormData();
+	// formData.append('action','enlever');
+	// formData.append('id', id);
 	
 	$.ajax({
 		type : 'POST',
 		url : 'films/filmsControleur.php',
-		data : formData,//leForm.serialize(),
-		contentType : false, //Enlever ces deux directives si vous utilisez serialize()
-		processData : false,
+		data :  {'id': id, 'action': 'enlever'}, //formData,//leForm.serialize(),
+		//contentType : false, //Enlever ces deux directives si vous utilisez serialize()
+		//processData : false,
 		dataType : 'json', //text pour le voir en format de string
 		success : function (response){//alert(reponse);
 			//filmsVue(reponse);
 			console.log(response);
-			if (response.success == true) {
-				$('#message').html(
-					'<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-			       response.msg +
-			      		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-			        		'<span aria-hidden="true">&times;</span>' +
-			      		'</button>' +
-			    	'</div>');
+			// if (response.success == true) {
+			// 	$('#message').html(
+			// 		'<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+			//        response.msg +
+			//       		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+			//         		'<span aria-hidden="true">&times;</span>' +
+			//       		'</button>' +
+			//     	'</div>');
 
-				lister();
-			}
+			// 	lister();
+			// }
+			showMessage(response);
+
 		},
 		fail : function (err){
 		}

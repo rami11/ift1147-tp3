@@ -33,6 +33,12 @@ function closeDialog(id) {
 	location.reload();
 }
 
+function toggleDialog(id) {
+	$(function () {
+		$(id).modal('toggle');
+	});
+}
+
 //lister();
 
 //showCategories();

@@ -68,6 +68,24 @@ function afficherFiche(reponse){
 
 }
 
+function showMessage(response) {
+  $('#message').html(response.msg);
+  $('#message').show();
+    // setTimeout(function() {
+    //   $('#message').html(response.msg);
+    // }, 5000);    
+}
+
+function showErrorMessage(response) {
+    rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                  rep += response.msg;
+                  rep  += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+                    rep += '<span aria-hidden="true">&times;</span>';
+                  rep += '</button>';
+                rep += '</div>';
+    $('#error-add-film-dialog').html(rep);
+}
+
 var filmsVue = function(reponse) {
 	var action=reponse.action; 
 	switch(action){

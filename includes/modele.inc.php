@@ -28,7 +28,7 @@ function deconnecter(){
 }
 	
 function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
-	$dossier="../$dossier/";
+	$dossier="$dossier/";
 	$nomPochette=sha1($chaine.time());
 	$pochette=$fichierDefaut;
 	if($_FILES[$inputNom]['tmp_name']!==""){
@@ -46,7 +46,7 @@ function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 	return $pochette;
 }
 function enleverFichier($dossier,$pochette){
-	if($pochette!="avatar.png"){
+	if ($pochette != "avatar.png") {
 		$rmPoc="../$dossier/".$pochette;
 		$tabFichiers = glob("../$dossier/*");
 		//print_r($tabFichiers);

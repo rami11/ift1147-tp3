@@ -8,21 +8,20 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="form-add-film" method="post">
+      <form id="form-add-film" action="javascript:void(0);" onsubmit="addFilm()">
         <div class="modal-body">
 
           <!-- Add film view -->
           <div class="row">
             <div class="col-md-12">
               <!-- Errors will show here -->
+              <div id="error-add-film-dialog"><!-- error message will be shown here ! --></div>
               <!-- title -->
               <div class="form-group row">
-
                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" name="title" value="<?php echo $film->title; ?>">
+                  <input type="text" class="form-control" id="title" name="title">
                 </div>
-
               </div>
               <!-- director -->
               <div class="form-group row">
@@ -31,7 +30,6 @@
                   <input type="text" class="form-control" id="director" name="director">
                 </div>
               </div>
-
               <!-- duration -->
               <div class="form-group row">
                 <label for="duration" class="col-sm-2 col-form-label">Durée</label>
@@ -46,30 +44,28 @@
                   <input type="number" step="0.01" min="0" max="50" class="form-control" id="price" name="price">
                 </div>
               </div>
-
               <!-- category -->
               <div class="form-group">
                 <select name="category" id="category" class="form-control">
                   <option disabled selected value placeholder="hello">Catégorie</option>
                   <?php foreach ($categories as $category) : ?>
-                      <option><?php echo $category->name ?></option>
+                    <option><?php echo $category->name ?></option>
                   <?php endforeach ?>
                 </select>
               </div>
-
               <!-- image -->
               <div class="form-group">
                 <input type="file" name="image" id="image">
               </div>
 
-              <!-- </form> -->
             </div>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal input').val('');">Annuler</button>
-          <button class="btn btn-success" onclick="addFilmButtonClicked();">Ajouter</button>
+          <button type="reset" class="btn btn-danger" onclick="toggleDialog('#modal');">Annuler</button>
+          <button type="submit" class="btn btn-success">Ajouter</button>
+          <!-- <button class="btn btn-success" onclick="addFilm();">Ajouter</button> -->
         </div>
       </form>
     </div>
