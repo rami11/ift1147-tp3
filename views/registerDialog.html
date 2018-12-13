@@ -10,14 +10,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-
+  
+      <form id="form-register" action="javascript:void(0);" onsubmit="registerButtonClicked();">
         <!-- body -->
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
-      
-                <form id="form-register" action="javascript:void(0);">
+                <div id="error-modal-register"><!-- error message will be shown here ! --></div>
+                
                 <!-- username -->
                 <div class="form-group">
                   <!-- is-invalid -->
@@ -40,7 +40,6 @@
                   <input type="password" name="confirm-password" id="confirm-password" class="form-control">
                 </div>
 
-                </form>
                  
               </div>
             </div>
@@ -48,9 +47,11 @@
 
           <!-- footer -->
           <div class="modal-footer">
-            <button class="btn btn-success" onclick="addFilmButtonClicked();">Inscrire</button>
-            <button class="btn btn-danger" data-dismiss="modal" onclick="$('#modal-register input').val('');">Annuler</button>
+            <button id="btn-register" class="btn btn-success">Inscrire</button>
+            <button type="reset" class="btn btn-danger" onclick="toggleDialog('#modal-register'); $('#error-modal-register').hide()">Annuler</button>
           </div>
+
+          </form>
 
       </div> <!-- content -->
     </div> <!-- dialog -->

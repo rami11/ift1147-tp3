@@ -38,20 +38,12 @@ function registerButtonClicked() {
 		success : function (response) {
 			console.log(response);
 			if(response.success) {
-				closeDialog('#modal-login');
-
+				//closeDialog('#modal-register');
+				toggleDialog('#modal-register');
+				location.reload();
 	        } else {
-	        	//alert(response);
-	            $('#error').fadeIn(1000, function() {
-	            	$('#error').html(
-	            		'<div class="alert alert-danger alert-dismissible fade show" role="alert">' + response.message +
-	            		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-	 						'<span aria-hidden="true">&times;</span>' +
-						'</button>' +
-						'</div>'
-	            	);
-	                $('#btn-login').html('Se connecter');
-	            });
+	     		displayErrorMessages('#error-modal-register', response.msg);
+	            $('#btn-register').html('Inscrire');
 	        }
 		},
 		fail : function (err) {
