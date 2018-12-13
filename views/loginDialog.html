@@ -8,14 +8,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <!-- <form id="form-login" method="post"> -->
+      <form id="form-login" action="javascript:void(0);" onsubmit="loginButtonClicked();">
 
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
-              <div id="error"><!-- error message will be shown here ! --></div>
+              <div id="error-modal-login"><!-- error message will be shown here ! --></div>
 
-              <form id="form-login" action="javascript:void(0);">
                 <!-- username -->
                 <div class="form-group">
                   <label for="login-username">Nom d'utilisateur ou courriel</label>
@@ -26,19 +25,17 @@
                   <label for="login-password">Mot de passe</label>
                   <input type="password" name="login-password" id="login-password" class="form-control">
                 </div>
-              </form>
 
             </div>
           </div>
         </div>
 
         <div class="modal-footer">
-          <button id="btn-login" class="btn btn-primary" onclick="loginButtonClicked();">Se connecter</button>
-          <!-- data-dismiss="modal" -->
-          <button class="btn btn-danger" onclick="closeDialog('#modal-login');//$('#modal-login input').val('');">Annuler</button>
+          <button id="btn-login" class="btn btn-primary">Se connecter</button>
+          <button type="reset" class="btn btn-danger" onclick="toggleDialog('#modal-login'); $('#error-modal-login').hide();">Annuler</button>
         </div>
 
-      <!-- </form> -->
+      </form>
 
     </div>
   </div>

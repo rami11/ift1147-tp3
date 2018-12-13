@@ -76,18 +76,19 @@ function showMessage(response) {
   // }, 5000);    
 }
 
-function showErrorMessage(response) {
+function showErrorMessage(id, msg) {
   rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-  rep += response.msg;
+  rep += msg;
   rep += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
   rep += '<span aria-hidden="true">&times;</span>';
   rep += '</button>';
   rep += '</div>';
-  $('#error-add-film-dialog').html(rep);
+  $(id).html(rep);
+  $(id).show();
 }
 
 function showAddedFilm(film) {
-  // rep = '<tr>'
+
   rep = '<td scope="row"><img src="img/' + film.image + '" style="width:50px; height: 55px;" /></td>';
   rep += '<td>' + film.title + '</td>';
   rep += '<td>' + film.director + '</td>';
@@ -98,7 +99,6 @@ function showAddedFilm(film) {
   rep += '<a class="btn btn-success btn-sm" href="viewsfilms/updateForm.php?id=">Modifier</a>';
   rep += ' <button class="btn btn-danger btn-sm" onclick="deleteFilm()">Supprimer</button>';
   rep += '</td>';
-  // rep +=  '</tr>';
 
   $('#row-film').html(rep);
   $('#row-film').show();

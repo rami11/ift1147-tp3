@@ -26,15 +26,15 @@ function doLogin() {
 			$_SESSION['admin'] = $row->admin;
 
 			$resultArray['success'] = true;
-			$resultArray['message'] = "Vous vous êtes connecter!";
+			$resultArray['msg'] = "Vous vous êtes connecter!";
 
 		} else{
 			$resultArray['success'] = false;
-			$resultArray['message'] = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+			$resultArray['msg'] = "Le nom d'utilisateur ou le mot de passe est incorrect.";
 		}
 
 	} catch(PDOException $e) {
-		$resultArray['message'] = $e->getMessage();
+		$resultArray['msg'] = $e->getMessage();
 	}
 
 	echo json_encode($resultArray);

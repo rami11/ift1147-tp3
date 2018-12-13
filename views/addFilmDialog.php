@@ -63,9 +63,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="reset" class="btn btn-danger" onclick="toggleDialog('#modal');">Annuler</button>
           <button type="submit" class="btn btn-success">Ajouter</button>
-          <!-- <button class="btn btn-success" onclick="addFilm();">Ajouter</button> -->
+          <button type="reset" class="btn btn-danger" onclick="toggleDialog('#modal'); $('#error-add-film-dialog').hide();">Annuler</button>
         </div>
       </form>
     </div>

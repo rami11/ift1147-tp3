@@ -19,10 +19,8 @@ function addFilm(){
 				showMessage(response);
 				showAddedFilm(response.film);
 				
-				//filmsVue(response);
-				//lister();
 			} else if (!response.success) {
-				showErrorMessage(response);
+				showErrorMessage('#error-add-film-dialog', response.msg);
 			}
 		},
 		fail : function(err) { 

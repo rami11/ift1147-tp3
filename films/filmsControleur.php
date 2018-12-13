@@ -18,16 +18,16 @@
 			$tabRes['msg'] .= "Le titre est obligatoire.<br>";
 			return;
 		}
-		// if (empty($director)) {
-		//  	$tabRes['msg'] .= "Le r�alisateur est obligatoire.<br>";
-		//  	return;
-		// }
+		if (empty($director)) {
+		 	$tabRes['msg'] .= "Le réalisateur est obligatoire.<br>";
+		 	return;
+		}
 		if (empty($category)) {
-			$tabRes['msg'] .= "La categorie est obligatoire.<br>";
+			$tabRes['msg'] .= "La catégorie est obligatoire.<br>";
 			return;
 		}
 		if (empty($duration)) {
-			$tabRes['msg'] .= "La dur�e est obligatoire.<br>";
+			$tabRes['msg'] .= "La durée est obligatoire.<br>";
 			return;
 		}
 		if (empty($price)) {
@@ -42,7 +42,7 @@
 			$unModele = new filmsModele($requete,array($title, $director, $category, $duration, $price, $image));
 			$stmt=$unModele->executer();
 			$tabRes['success'] = true;
-			$tabRes['msg'] = "Film <strong>{$title}</strong> bien enregistré";
+			$tabRes['msg'] = "Film <em>{$title}</em> bien enregistré.";
 
 			$tabRes['film']['title'] = $title;
 			$tabRes['film']['director'] = $director;
