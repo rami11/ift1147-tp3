@@ -1,4 +1,4 @@
-//requêtes films
+//requï¿½tes films
 function addFilm(){
 	var formFilm = new FormData(document.getElementById('form-add-film'));
 	formFilm.append('action','enregistrer');
@@ -69,32 +69,17 @@ function showCategories(){
 }
 
 function deleteFilm(id){
-	// var formData = new FormData();
-	// formData.append('action','enlever');
-	// formData.append('id', id);
 	
 	$.ajax({
 		type : 'POST',
 		url : 'films/filmsControleur.php',
-		data :  {'id': id, 'action': 'enlever'}, //formData,//leForm.serialize(),
-		//contentType : false, //Enlever ces deux directives si vous utilisez serialize()
-		//processData : false,
-		dataType : 'json', //text pour le voir en format de string
-		success : function (response){//alert(reponse);
-			//filmsVue(reponse);
+		data :  {'id': id, 'action': 'enlever'},
+		dataType : 'json',
+		success : function (response){
 			console.log(response);
-			// if (response.success == true) {
-			// 	$('#message').html(
-			// 		'<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-			//        response.msg +
-			//       		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-			//         		'<span aria-hidden="true">&times;</span>' +
-			//       		'</button>' +
-			//     	'</div>');
-
-			// 	lister();
-			// }
 			showMessage(response);
+			//location.reload();
+			hideDeletedFilm(response.id);
 
 		},
 		fail : function (err){

@@ -57,46 +57,48 @@
 		}
 	}
 	
-	function lister() {
-		global $tabRes;
-		$tabRes['action']="lister";
-		$requete="SELECT * FROM films ORDER BY id DESC";
-		try{
-			 $unModele=new filmsModele($requete,array());
-			 $stmt=$unModele->executer();
-			 $tabRes['listeFilms']=array();
-			 while($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
-			    $tabRes['listeFilms'][]=$ligne;
-			}
-		}catch(Exception $e){
-		}finally{
-			unset($unModele);
-		}
-	}
+	// function lister() {
+	// 	global $tabRes;
+	// 	$tabRes['action']="lister";
+	// 	$requete="SELECT * FROM films ORDER BY id DESC";
+	// 	try{
+	// 		 $unModele=new filmsModele($requete,array());
+	// 		 $stmt=$unModele->executer();
+	// 		 $tabRes['listeFilms']=array();
+	// 		 while($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
+	// 		    $tabRes['listeFilms'][]=$ligne;
+	// 		}
+	// 	}catch(Exception $e){
+	// 	}finally{
+	// 		unset($unModele);
+	// 	}
+	// }
 
-	function listCategories() {
-		global $tabRes;
-		$tabRes['action']="listerCategories";
-		$requete="SELECT * FROM categories";
-		try{
-			 $unModele=new filmsModele($requete,array());
-			 $stmt=$unModele->executer();
-			 $tabRes['listCategories']=array();
-			 while($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
-			    $tabRes['listCategories'][]=$ligne;
-			}
-		}catch(Exception $e){
-		}finally{
-			unset($unModele);
-		}
-	}
+	// function listCategories() {
+	// 	global $tabRes;
+	// 	$tabRes['action']="listerCategories";
+	// 	$requete="SELECT * FROM categories";
+	// 	try{
+	// 		 $unModele=new filmsModele($requete,array());
+	// 		 $stmt=$unModele->executer();
+	// 		 $tabRes['listCategories']=array();
+	// 		 while($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
+	// 		    $tabRes['listCategories'][]=$ligne;
+	// 		}
+	// 	}catch(Exception $e){
+	// 	}finally{
+	// 		unset($unModele);
+	// 	}
+	// }
 	
 	function enlever(){
-		global $tabRes;	
-		$idf=$_POST['id'];
+		global $tabRes;
+		$idf = $_POST['id'];
 		$tabRes['id'] = $idf;
+
+		$tabRes['success']=false;
 		try {
-			$requete = "SELECT * FROM films WHERE id=?";
+			$requete = "SELECT * FROM films WHERE id = ?";
 			$unModele = new filmsModele($requete, array($idf));
 			$stmt = $unModele->executer();
 			if ($ligne=$stmt->fetch(PDO::FETCH_OBJ)) {
@@ -104,16 +106,14 @@
 				$requete="DELETE FROM films WHERE id=?";
 				$unModele=new filmsModele($requete,array($idf));
 				$stmt=$unModele->executer();
-				//$tabRes['action']="enlever";
-				$tabRes['msg']="Film ".$idf." bien enleve";
-				//$tabRes['success']=true;
+
+				$tabRes['msg']="Film <em>{$idf}</em> bien enlevé.";
+				$tabRes['id'] = $idf;
+				$tabRes['success']=true;
 			} else{
-				//$tabRes['success']=false;
-				//$tabRes['action']="enlever";
-				$tabRes['msg']="Film ".$idf." introuvable";
+				$tabRes['msg']="Film <em>{$idf}</em> introuvable.";
 			}
 		} catch(Exception $e){
-			//$tabRes['success']=false;
 			$tabRes['msg']=$e->getMessage();
 		} finally{
 			unset($unModele);
