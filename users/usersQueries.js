@@ -38,7 +38,6 @@ function registerButtonClicked() {
 		success : function (response) {
 			console.log(response);
 			if(response.success) {
-				//closeDialog('#modal-register');
 				toggleDialog('#modal-register');
 				location.reload();
 	        } else {
