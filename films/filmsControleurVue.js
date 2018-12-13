@@ -69,8 +69,6 @@
 // }
 
 function showMessage(response) {
-  // $('#message').html(response.msg);
-  // $('#message').show();
   $('#message').show();
   $( "#message" ).fadeIn( "slow", function() {
     $('#message').html(response.msg);
@@ -78,8 +76,7 @@ function showMessage(response) {
 
   $( "#message" ).fadeOut(5000, function() {
     $('#message').hide();
-  });
-   
+  }); 
 }
 
 function showErrorMessage(id, msg) {

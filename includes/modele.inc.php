@@ -4,6 +4,8 @@ class filmsModele{
 	private $requete;
 	private $params;
 	private $connexion;
+
+	private $lastInsertId;
 	
 function __construct($requete=null,$params=null){
 		$this->requete=$requete;
@@ -20,13 +22,19 @@ function executer(){
 		$this->connexion = $this->obtenirConnexion();
 		$stmt = $this->connexion->prepare($this->requete);
 		$stmt->execute($this->params);
+		$this->lastInsertId = $this->connexion->lastInsertId();
+        // var_dump( $this->lastInsertId);
 		$this->deconnecter();
 		return $stmt;		
 	}
 function deconnecter(){
 		unset($this->connexion);
 }
-	
+
+function getLastInsertId(){
+	return $this->lastInsertId;
+}
+
 function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 	$dossier="$dossier/";
 	$nomPochette=sha1($chaine.time());

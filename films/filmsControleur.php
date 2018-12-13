@@ -44,12 +44,14 @@
 			$tabRes['success'] = true;
 			$tabRes['msg'] = "Film <em>{$title}</em> bien enregistré.";
 
+			$tabRes['film']['id'] = $unModele->getLastInsertId();
 			$tabRes['film']['title'] = $title;
 			$tabRes['film']['director'] = $director;
 			$tabRes['film']['category'] = $category;
 			$tabRes['film']['duration'] = $duration;
 			$tabRes['film']['price'] = $price;
 			$tabRes['film']['image'] = $image;
+
 		} catch(Exception $e){
 			$tabRes['msg'] = $e->getMessage();
 		} finally{

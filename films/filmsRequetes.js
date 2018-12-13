@@ -1,129 +1,135 @@
 //requ�tes films
-function addFilm(){
+function addFilm() {
 	var formFilm = new FormData(document.getElementById('form-add-film'));
-	formFilm.append('action','enregistrer');
+	formFilm.append('action', 'enregistrer');
 	$.ajax({
-		type : 'POST',
-		url : 'films/filmsControleur.php',
-		data : formFilm,
-		dataType : 'json', //text pour le voir en format de string
+		type: 'POST',
+		url: 'films/filmsControleur.php',
+		data: formFilm,
+		dataType: 'json', //text pour le voir en format de string
 		//async : false,
 		//cache : false,
-		contentType : false,
-		processData : false,
-		success : function(response) {
+		contentType: false,
+		processData: false,
+		success: function (response) {
 			console.log(response);
 
 			if (response.success) {
 				toggleDialog('#modal');
 				showMessage(response);
 				showAddedFilm(response.film);
-				
+
 			} else if (!response.success) {
 				showErrorMessage('#error-add-film-dialog', response.msg);
 			}
 		},
-		fail : function(err) { 
+		fail: function (err) {
 		}
 	});
 }
 
-function lister(){
+function lister() {
 	var formFilm = new FormData();
-	formFilm.append('action','lister');//alert(formFilm.get("action"));
+	formFilm.append('action', 'lister');//alert(formFilm.get("action"));
 	$.ajax({
-		type : 'POST',
-		url : 'films/filmsControleur.php',
-		data : formFilm,
-		contentType : false,
-		processData : false,
-		dataType : 'json', //text pour le voir en format de string
-		success : function (reponse){
+		type: 'POST',
+		url: 'films/filmsControleur.php',
+		data: formFilm,
+		contentType: false,
+		processData: false,
+		dataType: 'json', //text pour le voir en format de string
+		success: function (reponse) {
 			//alert(reponse);
 			filmsVue(reponse);
 		},
-		fail : function (err){
+		fail: function (err) {
 		}
 	});
 }
 
-function showCategories(){
+function showCategories() {
 	var formFilm = new FormData();
-	formFilm.append('action','listerCategories');//alert(formFilm.get("action"));
+	formFilm.append('action', 'listerCategories');//alert(formFilm.get("action"));
 	//console.log("show cat"+formFilm.action);
 	$.ajax({
-		type : 'POST',
-		url : 'films/filmsControleur.php',
-		data : formFilm,
-		contentType : false,
-		processData : false,
-		dataType : 'json', //text pour le voir en format de string
-		success : function (reponse){
+		type: 'POST',
+		url: 'films/filmsControleur.php',
+		data: formFilm,
+		contentType: false,
+		processData: false,
+		dataType: 'json', //text pour le voir en format de string
+		success: function (reponse) {
 			//alert(reponse);
 			//listCategories(reponse);
 			filmsVue(reponse);
 		},
-		fail : function (err){
+		fail: function (err) {
 		}
 	});
 }
 
-function deleteFilm(id){
-	
+function deleteFilm(id) {
+
 	$.ajax({
-		type : 'POST',
-		url : 'films/filmsControleur.php',
-		data :  {'id': id, 'action': 'enlever'},
-		dataType : 'json',
-		success : function (response){
-			console.log(response);
-			showMessage(response);
-			//location.reload();
-			hideDeletedFilm(response.id);
+		type: 'POST',
+		url: 'films/filmsControleur.php',
+		data: { 'id': id, 'action': 'enlever' },
+		dataType: 'json',
+		success: function (response) {
+
+			if (response.success) {
+				console.log(response);
+				showMessage(response);
+				//location.reload();
+				hideDeletedFilm(response.id);
+
+			} else {
+				showMessage(response);
+			}
 
 		},
-		fail : function (err){
+		fail: function (err) {
 		}
 	});
 }
 
 
-function obtenirFiche(){
+function obtenirFiche() {
 	$('#divFiche').hide();
-	var leForm=document.getElementById('formFiche');
+	var leForm = document.getElementById('formFiche');
 	var formFilm = new FormData(leForm);
-	formFilm.append('action','fiche');
+	formFilm.append('action', 'fiche');
 	$.ajax({
-		type : 'POST',
-		url : 'Films/filmsControleur.php',
-		data : formFilm,
-		contentType : false, 
-		processData : false,
-		dataType : 'json', 
-		success : function (reponse){//alert(reponse);
-					filmsVue(reponse);
+		type: 'POST',
+		url: 'Films/filmsControleur.php',
+		data: formFilm,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		success: function (reponse) {//alert(reponse);
+			filmsVue(reponse);
 		},
-		fail : function (err){
+		fail: function (err) {
 		}
 	});
 }
 
-function modifier(){
-	var leForm=document.getElementById('formFicheF');
+function modifier() {
+	var leForm = document.getElementById('formFicheF');
 	var formFilm = new FormData(leForm);
-	formFilm.append('action','modifier');
+	formFilm.append('action', 'modifier');
 	$.ajax({
-		type : 'POST',
-		url : 'Films/filmsControleur.php',
-		data : formFilm,
-		contentType : false, 
-		processData : false,
-		dataType : 'json', 
-		success : function (reponse){//alert(reponse);
-					$('#divFormFiche').hide();
-					filmsVue(reponse);
+		type: 'POST',
+		url: 'Films/filmsControleur.php',
+		data: formFilm,
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		success: function (reponse) {//alert(reponse);
+			$('#divFormFiche').hide();
+			filmsVue(reponse);
 		},
-		fail : function (err){
+		fail: function (err) {
 		}
 	});
 
