@@ -122,24 +122,24 @@
 		}
 	}
 	
-	function fiche(){
+	function fiche() {
 		global $tabRes;
-		$idf=$_POST['numF'];
-		$tabRes['action']="fiche";
-		$requete="SELECT * FROM films WHERE idf=?";
-		try{
-			 $unModele=new filmsModele($requete,array($idf));
+		$id = $_POST['id'];
+		
+		$requete = "SELECT * FROM films WHERE id = ?";
+		try {
+			 $unModele = new filmsModele($requete, array($id));
 			 $stmt=$unModele->executer();
-			 $tabRes['fiche']=array();
-			 if($ligne=$stmt->fetch(PDO::FETCH_OBJ)){
-			    $tabRes['fiche']=$ligne;
-				$tabRes['OK']=true;
+			 $tabRes['film'] = array();
+			 if ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+			    $tabRes['film'] = $ligne;
+				$tabRes['success']  = true;
+			} else {
+				$tabRes['success'] = false;
 			}
-			else{
-				$tabRes['OK']=false;
-			}
-		}catch(Exception $e){
-		}finally{
+		} catch(Exception $e){
+
+		} finally {
 			unset($unModele);
 		}
 	}

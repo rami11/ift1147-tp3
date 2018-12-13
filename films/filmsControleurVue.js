@@ -68,6 +68,34 @@
 
 // }
 
+function afficherFiche(reponse) {
+  var uneFiche;
+  if (reponse.success) {
+    uneFiche = reponse.film;
+    //$('#formFicheF h3:first-child').html("Fiche du film numero " + uneFiche.idf);
+    // $('#idf').val(uneFiche.idf);
+    // $('#titreF').val(uneFiche.titre);
+    // $('#dureeF').val(uneFiche.duree);
+    // $('#resF').val(uneFiche.res);
+
+    $('#title').val(uneFiche.title);
+    $('#director').val(uneFiche.director);
+    $('#category').val(uneFiche.category);
+    // $("#category select" ).val( uneFiche.category)
+    $('#duration').val(uneFiche.duration);
+    $('#price').val(uneFiche.price);
+
+    toggleDialog("#modal");
+
+    // $('#divFormFiche').show();
+    // document.getElementById('divFormFiche').style.display = 'block';
+  } else {
+    // $('#messages').html("Film " + $('#numF').val() + " introuvable");
+    // setTimeout(function () { $('#messages').html(""); }, 5000);
+  }
+
+}
+
 function showMessage(response) {
   $('#message').show();
   $( "#message" ).fadeIn( "slow", function() {
@@ -118,13 +146,13 @@ var filmsVue = function (reponse) {
     case "enlever":
     case "modifier":
       $('#messages').html(reponse.msg);
-      setTimeout(function () { $('#messages').html(""); }, 5000);
-      break;
-    case "lister":
-      listerF(reponse.listeFilms);
-      break;
-    case "listerCategories":
-      listerC(reponse.listCategories);
+      //setTimeout(function () afficherFiche{ $('#messages').html(""); }, 5000);
+      break;afficherFiche
+    case "lister":afficherFiche
+      listerF(reponse.listeFiafficherFichelms);
+      break;afficherFiche
+    case "listerCategories":afficherFiche
+      listerC(reponse.listCatafficherFicheegories);
       break;
     case "fiche":
       afficherFiche(reponse);

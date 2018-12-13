@@ -49,7 +49,7 @@
                 <select name="category" id="category" class="form-control">
                   <option disabled selected value placeholder="hello">Catégorie</option>
                   <?php foreach ($categories as $category) : ?>
-                    <option><?php echo $category->name ?></option>
+                    <option value="<?php echo $category->name; ?>"><?php echo $category->name ?></option>
                   <?php endforeach ?>
                 </select>
               </div>

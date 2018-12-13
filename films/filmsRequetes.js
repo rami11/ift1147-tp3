@@ -94,20 +94,23 @@ function deleteFilm(id) {
 }
 
 
-function obtenirFiche() {
-	$('#divFiche').hide();
-	var leForm = document.getElementById('formFiche');
-	var formFilm = new FormData(leForm);
-	formFilm.append('action', 'fiche');
+function obtenirFiche(id) {
+	// $('#divFiche').hide();
+	// var leForm = document.getElementById('formFiche');
+	// var formFilm = new FormData(leForm);
+	// formFilm.append('action', 'fiche');
 	$.ajax({
 		type: 'POST',
-		url: 'Films/filmsControleur.php',
-		data: formFilm,
-		contentType: false,
-		processData: false,
+		url: 'films/filmsControleur.php',
+		data: {'id': id, 'action': 'fiche'},
+		// contentType: false,
+		// processData: false,
 		dataType: 'json',
 		success: function (reponse) {//alert(reponse);
-			filmsVue(reponse);
+			// filmsVue(reponse);
+			console.log(reponse);
+			afficherFiche(reponse);
+			// showMessage( reponse );
 		},
 		fail: function (err) {
 		}

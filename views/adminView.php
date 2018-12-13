@@ -27,7 +27,7 @@
           <td><?php echo $film->duration; ?></td>
           <td><?php echo $film->price; ?></td>
           <td>
-            <a class="btn btn-success btn-sm" href="viewsfilms/updateForm.php?id=<?php echo $film->id; ?>">Modifier</a>
+            <button class="btn btn-success btn-sm" onclick="obtenirFiche(<?php echo $film->id ?>);">Modifier</button>
             <button class="btn btn-danger btn-sm" onclick="deleteFilm(<?php echo $film->id ?>)">Supprimer</button>
           </td>
         </tr>

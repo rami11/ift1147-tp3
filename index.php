@@ -19,11 +19,12 @@ $categories = getCategories();
 
   <?php include 'includes/header.html'; ?>
   <link rel="stylesheet" href="css/index.css" />
-
-  <script language="javascript" src="films/filmsRequetes.js"></script>
   <script language="javascript" src="films/filmsControleurVue.js"></script>
   <script language="javascript" src="users/usersQueries.js"></script>
   <script language="javascript" src="js/global.js"></script>
+  <script language="javascript" src="films/filmsRequetes.js"></script>
+
+ 
 </head>
 <body>
 
