@@ -76,7 +76,7 @@ function showMessage(response) {
     $('#message').html(response.msg);
   });
 
-  $( "#message" ).fadeOut(1000, function() {
+  $( "#message" ).fadeOut(5000, function() {
     $('#message').hide();
   });
    
