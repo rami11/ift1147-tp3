@@ -1,5 +1,5 @@
 <?php 
-require_once("../includes/cartItem.php");
+require_once("../includes/CartItem.php");
 require_once("../includes/modele.inc.php");
 require_once('../includes/functions.php');
 
