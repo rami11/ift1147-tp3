@@ -17,7 +17,8 @@ function addFilm() {
 			if (response.success) {
 				toggleDialog('#modal');
 				showMessage(response);
-				showAddedFilm(response.film);
+				//showAddedFilm(response.film);
+				location.reload();
 
 			} else if (!response.success) {
 				showErrorMessage('#error-add-film-dialog', response.msg);
@@ -116,7 +117,7 @@ function updateFilm() {
 	//filmForm.append('id', id);
 	$.ajax({
 		type: 'POST',
-		url: 'Films/filmsControleur.php',
+		url: 'films/filmsControleur.php',
 		data: filmForm,
 		contentType: false,
 		processData: false,

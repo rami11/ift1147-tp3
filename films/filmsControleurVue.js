@@ -86,13 +86,15 @@ function afficherFiche(reponse) {
 
 function showMessage(response) {
   $('#message').show();
+
   $( "#message" ).fadeIn( "slow", function() {
     $('#message').html(response.msg);
   });
+  setTimeout(function() { $('#message').hide(); }, 5000);
 
-  $( "#message" ).fadeOut(5000, function() {
-    $('#message').hide();
-  }); 
+  // $( "#message" ).fadeOut(5000, function() {
+  //   $('#message').hide();
+  // }); 
 }
 
 function showErrorMessage(id, msg) {
