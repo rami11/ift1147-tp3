@@ -54,6 +54,7 @@ $categories = getCategories();
   <?php include 'views/registerDialog.html'; ?>
   <?php include 'views/loginDialog.html'; ?>
   <?php include 'views/addFilmDialog.php'; ?>
+  <?php include 'views/updateFilmDialog.php'; ?>
 
 </body>
 </html>

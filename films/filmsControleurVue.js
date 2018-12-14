@@ -72,28 +72,16 @@ function afficherFiche(reponse) {
   var uneFiche;
   if (reponse.success) {
     uneFiche = reponse.film;
-    //$('#formFicheF h3:first-child').html("Fiche du film numero " + uneFiche.idf);
-    // $('#idf').val(uneFiche.idf);
-    // $('#titreF').val(uneFiche.titre);
-    // $('#dureeF').val(uneFiche.duree);
-    // $('#resF').val(uneFiche.res);
 
+    $('#film-id').val(uneFiche.id);
     $('#title').val(uneFiche.title);
     $('#director').val(uneFiche.director);
     $('#category').val(uneFiche.category);
-    // $("#category select" ).val( uneFiche.category)
     $('#duration').val(uneFiche.duration);
     $('#price').val(uneFiche.price);
 
-    toggleDialog("#modal");
-
-    // $('#divFormFiche').show();
-    // document.getElementById('divFormFiche').style.display = 'block';
-  } else {
-    // $('#messages').html("Film " + $('#numF').val() + " introuvable");
-    // setTimeout(function () { $('#messages').html(""); }, 5000);
+    toggleDialog("#modal-update-film");
   }
-
 }
 
 function showMessage(response) {
@@ -110,6 +98,20 @@ function showMessage(response) {
 function showErrorMessage(id, msg) {
   rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
   rep += msg;
+  rep += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+  rep += '<span aria-hidden="true">&times;</span>';
+  rep += '</button>';
+  rep += '</div>';
+  $(id).html(rep);
+  $(id).show();
+}
+
+function displayErrorMessages(id, messages) {
+	rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+	messages.forEach(function(message) {
+    	rep += message + '<br>';
+	});
+  //rep += messages;
   rep += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
   rep += '<span aria-hidden="true">&times;</span>';
   rep += '</button>';
@@ -137,6 +139,16 @@ function showAddedFilm(film) {
 
 function hideDeletedFilm(id) {
     $('#'+id).hide();
+}
+
+function updateFilmRow(film) {
+  var id = film.id;
+
+  $('#image-'+id).html("img/" + film.image);
+  $('#title-'+id).html(film.title);
+  $('#director-'+id).html(film.director);
+  $('#category-'+id).html(film.category);
+  $('#price-'+id).html(film.price);
 }
 
 var filmsVue = function (reponse) {

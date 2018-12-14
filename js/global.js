@@ -11,19 +11,19 @@ function toggleDialog(id) {
 	});
 }
 
-function displayErrorMessages(id, messages) {
-	rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-	messages.forEach(function(message) {
-    	rep += message + '<br>';
-	});
-  //rep += messages;
-  rep += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-  rep += '<span aria-hidden="true">&times;</span>';
-  rep += '</button>';
-  rep += '</div>';
-  $(id).html(rep);
-  $(id).show();
-}
+// function displayErrorMessages(id, messages) {
+// 	rep = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+// 	messages.forEach(function(message) {
+//     	rep += message + '<br>';
+// 	});
+//   //rep += messages;
+//   rep += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+//   rep += '<span aria-hidden="true">&times;</span>';
+//   rep += '</button>';
+//   rep += '</div>';
+//   $(id).html(rep);
+//   $(id).show();
+// }
 
 //lister();
 

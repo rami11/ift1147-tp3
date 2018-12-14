@@ -28,45 +28,45 @@ function addFilm() {
 	});
 }
 
-function lister() {
-	var formFilm = new FormData();
-	formFilm.append('action', 'lister');//alert(formFilm.get("action"));
-	$.ajax({
-		type: 'POST',
-		url: 'films/filmsControleur.php',
-		data: formFilm,
-		contentType: false,
-		processData: false,
-		dataType: 'json', //text pour le voir en format de string
-		success: function (reponse) {
-			//alert(reponse);
-			filmsVue(reponse);
-		},
-		fail: function (err) {
-		}
-	});
-}
+// function lister() {
+// 	var formFilm = new FormData();
+// 	formFilm.append('action', 'lister');//alert(formFilm.get("action"));
+// 	$.ajax({
+// 		type: 'POST',
+// 		url: 'films/filmsControleur.php',
+// 		data: formFilm,
+// 		contentType: false,
+// 		processData: false,
+// 		dataType: 'json', //text pour le voir en format de string
+// 		success: function (reponse) {
+// 			//alert(reponse);
+// 			filmsVue(reponse);
+// 		},
+// 		fail: function (err) {
+// 		}
+// 	});
+// }
 
-function showCategories() {
-	var formFilm = new FormData();
-	formFilm.append('action', 'listerCategories');//alert(formFilm.get("action"));
-	//console.log("show cat"+formFilm.action);
-	$.ajax({
-		type: 'POST',
-		url: 'films/filmsControleur.php',
-		data: formFilm,
-		contentType: false,
-		processData: false,
-		dataType: 'json', //text pour le voir en format de string
-		success: function (reponse) {
-			//alert(reponse);
-			//listCategories(reponse);
-			filmsVue(reponse);
-		},
-		fail: function (err) {
-		}
-	});
-}
+// function showCategories() {
+// 	var formFilm = new FormData();
+// 	formFilm.append('action', 'listerCategories');//alert(formFilm.get("action"));
+// 	//console.log("show cat"+formFilm.action);
+// 	$.ajax({
+// 		type: 'POST',
+// 		url: 'films/filmsControleur.php',
+// 		data: formFilm,
+// 		contentType: false,
+// 		processData: false,
+// 		dataType: 'json', //text pour le voir en format de string
+// 		success: function (reponse) {
+// 			//alert(reponse);
+// 			//listCategories(reponse);
+// 			filmsVue(reponse);
+// 		},
+// 		fail: function (err) {
+// 		}
+// 	});
+// }
 
 function deleteFilm(id) {
 
@@ -95,42 +95,45 @@ function deleteFilm(id) {
 
 
 function obtenirFiche(id) {
-	// $('#divFiche').hide();
-	// var leForm = document.getElementById('formFiche');
-	// var formFilm = new FormData(leForm);
-	// formFilm.append('action', 'fiche');
 	$.ajax({
 		type: 'POST',
 		url: 'films/filmsControleur.php',
 		data: {'id': id, 'action': 'fiche'},
-		// contentType: false,
-		// processData: false,
 		dataType: 'json',
-		success: function (reponse) {//alert(reponse);
-			// filmsVue(reponse);
+		success: function (reponse) {
 			console.log(reponse);
 			afficherFiche(reponse);
-			// showMessage( reponse );
 		},
 		fail: function (err) {
 		}
 	});
 }
 
-function modifier() {
-	var leForm = document.getElementById('formFicheF');
-	var formFilm = new FormData(leForm);
-	formFilm.append('action', 'modifier');
+function updateFilm(id) {
+	var form = document.getElementById('form-update-film');
+	var filmForm = new FormData(form);
+	filmForm.append('action', 'modifier');
+	filmForm.append('id', id);
 	$.ajax({
 		type: 'POST',
 		url: 'Films/filmsControleur.php',
-		data: formFilm,
+		data: filmForm,
 		contentType: false,
 		processData: false,
 		dataType: 'json',
-		success: function (reponse) {//alert(reponse);
-			$('#divFormFiche').hide();
-			filmsVue(reponse);
+		success: function (response) {
+			console.log(response);
+			// $('#divFormFiche').hide();
+			// filmsVue(response);
+			if (response.success) {
+				toggleDialog('#modal-update-film');
+				showMessage(response);
+				updateFilmRow(response.film);
+
+			} else if (!response.success) {
+				// showErrorMessage('#error-update-film-dialog', response.msg);
+				displayErrorMessages('#error-update-film-dialog', response.msg);
+			}
 		},
 		fail: function (err) {
 		}

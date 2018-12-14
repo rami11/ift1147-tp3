@@ -95,25 +95,25 @@
 	
 	function enlever(){
 		global $tabRes;
-		$idf = $_POST['id'];
-		$tabRes['id'] = $idf;
+		$id = $_POST['id'];
+		$tabRes['id'] = $id;
 
 		$tabRes['success']=false;
 		try {
 			$requete = "SELECT * FROM films WHERE id = ?";
-			$unModele = new filmsModele($requete, array($idf));
+			$unModele = new filmsModele($requete, array($id));
 			$stmt = $unModele->executer();
-			if ($ligne=$stmt->fetch(PDO::FETCH_OBJ)) {
-				$unModele->enleverFichier("img",$ligne->image);
+			if ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+				$unModele->enleverFichier("img", $ligne->image);
 				$requete="DELETE FROM films WHERE id=?";
-				$unModele=new filmsModele($requete,array($idf));
+				$unModele=new filmsModele($requete,array($id));
 				$stmt=$unModele->executer();
 
-				$tabRes['msg']="Film <em>{$idf}</em> bien enlevé.";
-				$tabRes['id'] = $idf;
-				$tabRes['success']=true;
+				$tabRes['msg']="Film <em>{$id}</em> bien enlevé.";
+				$tabRes['id'] = $id;
+				$tabRes['success'] = true;
 			} else{
-				$tabRes['msg']="Film <em>{$idf}</em> introuvable.";
+				$tabRes['msg']="Film <em>{$id}</em> introuvable.";
 			}
 		} catch(Exception $e){
 			$tabRes['msg']=$e->getMessage();
@@ -125,6 +125,7 @@
 	function fiche() {
 		global $tabRes;
 		$id = $_POST['id'];
+		//$_SESSION['id_film_to_modify'] = $id;
 		
 		$requete = "SELECT * FROM films WHERE id = ?";
 		try {
@@ -146,42 +147,75 @@
 	
 	function modifier(){
 		global $tabRes;	
-		$titre=$_POST['titreF'];
-		$duree=$_POST['dureeF'];
-		$res=$_POST['resF'];
-		$idf=$_POST['idf']; 
-		try{
-			//Recuperer ancienne pochette
-			$requette="SELECT pochette FROM films WHERE idf=?";
-			$unModele=new filmsModele($requette,array($idf));
-			$stmt=$unModele->executer();
-			$ligne=$stmt->fetch(PDO::FETCH_OBJ);
-			$anciennePochette=$ligne->pochette;
-			$pochette=$unModele->verserFichier("pochettes", "pochette",$anciennePochette,$titre);	
-			
-			$requete="UPDATE films SET titre=?,duree=?, res=?, pochette=? WHERE idf=?";
-			$unModele=new filmsModele($requete,array($titre,$duree,$res,$pochette,$idf));
-			$stmt=$unModele->executer();
-			$tabRes['action']="modifier";
-			$tabRes['msg']="Film $idf bien modifie";
-		}catch(Exception $e){
-		}finally{
-			unset($unModele);
+
+		$id = $_POST['id'];
+		$title = $_POST['title'];
+		$director = $_POST['director'];
+		$category = $_POST['category'];
+		$duration = $_POST['duration'];
+		$price = $_POST['price'];
+
+		$tabRes['success'] = false;
+
+		$tabRes['msg'] = array();
+		if (empty($title)) {
+			$tabRes['msg'][] = "Le titre est obligatoire.<br>";
+		}
+		if (empty($director)) {
+		 	$tabRes['msg'][] = "Le réalisateur est obligatoire.<br>";
+		}
+		if (empty($category)) {
+			$tabRes['msg'][] = "La catégorie est obligatoire.<br>";
+		}
+		if (empty($duration)) {
+			$tabRes['msg'][] = "La durée est obligatoire.<br>";
+		}
+		if (empty($price)) {
+			$tabRes['msg'][] = "Le prix est obligatoire.<br>";
+		}
+		
+		if (count($resultArray['msg']) == 0) {
+			try {
+				//Recuperer ancienne pochette
+				$requette = "SELECT image FROM films WHERE id = ?";
+				$unModele = new filmsModele($requette, array($id));
+				$stmt = $unModele->executer();
+				$ligne = $stmt->fetch(PDO::FETCH_OBJ);
+				$oldImage = $ligne->image;
+				$image = $unModele->verserFichier("img", "image", $oldImage, $titre);	
+				
+				$requete = "UPDATE films SET ";
+				$requete .= "title = ?, director = ?, category = ?, duration = ?, price = ?, image = ? ";
+				$requete .= "WHERE id = ?";
+				$unModele = new filmsModele($requete, array($title,$director,$category,$duration,$price,$image,$id));
+				$stmt = $unModele->executer();
+				//$film=$stmt->fetch(PDO::FETCH_OBJ);
+				//var_dump($film);
+
+				// $tabRes['action']="modifier";
+				$tabRes['success'] = true;
+				$tabRes['film'] = true;
+				$tabRes['message'] = "Film <em>{$id}</em> bien modifie ";
+			}catch(Exception $e){
+				$tabRes['msg'][] = $e->getMessage();
+			}finally{
+				unset($unModele);
+			}
 		}
 	}
 	//******************************************************
-	//Contr�leur
+	//Controleur
 	$action=$_POST['action'];
 	switch($action){
 		case "enregistrer" :
 			enregistrer();
 			break;
-		case "lister" :
-			lister();
-			break;
-		case "listerCategories" :
-			listCategories();
-			break;
+		// case "lister" :
+		// 	lister();
+		// 	break;
+		// case "listerCategories" :
+		// 	listCategories();
+		// 	break;
 		case "enlever" :
 			enlever();
 			break;
