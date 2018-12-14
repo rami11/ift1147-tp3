@@ -24,37 +24,19 @@ function getFilms($selectedCategory = "") {
 }
 
 function getFilm($id) {
-
   $query = "SELECT * FROM films WHERE id = '$id' LIMIT 1";
-
 
   try{
        $model = new filmsModele($query, array());
        $stmt = $model->executer();
 
        $film = $stmt->fetch(PDO::FETCH_OBJ);
-       
     }catch(Exception $e){
 
     }finally{
       unset($model);
     }
     return $film;
-
-
-  // $result = mysqli_query($connection, $query);
-  // $row = mysqli_fetch_assoc($result);
-  // //$id = $film['id'];
-  // $title = $row['title'];
-  // $director = $row['director'];
-  // $category = $row['category'];
-  // $duration = $row['duration'];
-  // $price = $row['price'];
-  // $image = "images/".$row['image'];
-
-  // $film = new Film($id, $title, $director, $category, $duration, $price, $image);
-  
-  // return $film;
 }
 
 function getCategories() {

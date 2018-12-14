@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="form-update-film" action="javascript:void(0);" onsubmit="updateFilm(<?php echo '<div id=\'film-id\'></div>'; ?>);">
+      <form id="form-update-film" action="javascript:void(0);" onsubmit="updateFilm();">
         <div class="modal-body">
 
           <!-- Add film view -->
@@ -16,6 +16,8 @@
             <div class="col-md-12">
               <!-- Errors will show here -->
               <div id="error-update-film-dialog"><!-- error message will be shown here ! --></div>
+              <!-- id -->
+              <input type="hidden" id="id" name="id">
               <!-- title -->
               <div class="form-group row">
                 <label for="title" class="col-sm-2 col-form-label">Title</label>

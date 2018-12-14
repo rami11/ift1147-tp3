@@ -157,7 +157,7 @@
 
 		$tabRes['success'] = false;
 
-		$tabRes['msg'] = array();
+		//$tabRes['msg'] = array();
 		if (empty($title)) {
 			$tabRes['msg'][] = "Le titre est obligatoire.<br>";
 		}
@@ -191,11 +191,15 @@
 				$stmt = $unModele->executer();
 				//$film=$stmt->fetch(PDO::FETCH_OBJ);
 				//var_dump($film);
+				
 
 				// $tabRes['action']="modifier";
 				$tabRes['success'] = true;
-				$tabRes['film'] = true;
-				$tabRes['message'] = "Film <em>{$id}</em> bien modifie ";
+
+				$film = $unModele->getFilm($id);
+				//var_dump($film);
+				$tabRes['film'] = $film;
+				$tabRes['msg'] = "Film <em>{$id}</em> bien modifie ";
 			}catch(Exception $e){
 				$tabRes['msg'][] = $e->getMessage();
 			}finally{

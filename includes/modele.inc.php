@@ -19,20 +19,29 @@ function obtenirConnexion(){
 }
 
 function executer(){
-		$this->connexion = $this->obtenirConnexion();
-		$stmt = $this->connexion->prepare($this->requete);
-		$stmt->execute($this->params);
-		$this->lastInsertId = $this->connexion->lastInsertId();
-        // var_dump( $this->lastInsertId);
-		$this->deconnecter();
-		return $stmt;		
-	}
+	$this->connexion = $this->obtenirConnexion();
+	$stmt = $this->connexion->prepare($this->requete);
+	$stmt->execute($this->params);
+	$this->lastInsertId = $this->connexion->lastInsertId();
+	// var_dump( $this->lastInsertId);
+	$this->deconnecter();
+	return $stmt;		
+}
+
 function deconnecter(){
-		unset($this->connexion);
+	unset($this->connexion);
 }
 
 function getLastInsertId(){
 	return $this->lastInsertId;
+}
+
+function getFilm($id) {
+	$this->requete = "SELECT * FROM films WHERE id = ? ";
+	$this->params = array($id);
+	$stmt = $this->executer();
+	$ligne = $stmt->fetch(PDO::FETCH_OBJ);
+	return $ligne;
 }
 
 function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
@@ -44,14 +53,7 @@ function verserFichier($dossier, $inputNom, $fichierDefaut, $chaine){
 		$tmp = $_FILES[$inputNom]['tmp_name'];
 		$fichier= $_FILES[$inputNom]['name'];
 		$extension=strrchr($fichier,'.');
-		//echo "folder to move to: ". $dossier.$nomPochette.$extension . "<br>";
- 
-		// var_dump( $dossier.$nomPochette.$extension );
-		// echo __FILE__."";
-		// echo " -- ";
-		// echo "../".$dossier.$nomPochette.$extension;
 		@move_uploaded_file($tmp,"../".$dossier.$nomPochette.$extension);
-		// echo move_uploaded_file($tmp,"/var/www/html/ift1147-tp3/img/".$nomPochette.$extension);
 		// Enlever le fichier temporaire charg�
 		@unlink($tmp); //effacer le fichier temporaire
 		$pochette=$nomPochette.$extension;
@@ -62,7 +64,6 @@ function enleverFichier($dossier,$pochette){
 	if ($pochette != "avatar.png") {
 		$rmPoc="../$dossier/".$pochette;
 		$tabFichiers = glob("../$dossier/*");
-		//print_r($tabFichiers);
 		// parcourir les fichier
 		foreach($tabFichiers as $fichier){
 		  if(is_file($fichier) && $fichier==trim($rmPoc)) {

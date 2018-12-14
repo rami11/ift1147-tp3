@@ -109,11 +109,11 @@ function obtenirFiche(id) {
 	});
 }
 
-function updateFilm(id) {
+function updateFilm() {
 	var form = document.getElementById('form-update-film');
 	var filmForm = new FormData(form);
 	filmForm.append('action', 'modifier');
-	filmForm.append('id', id);
+	//filmForm.append('id', id);
 	$.ajax({
 		type: 'POST',
 		url: 'Films/filmsControleur.php',

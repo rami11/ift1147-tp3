@@ -73,7 +73,7 @@ function afficherFiche(reponse) {
   if (reponse.success) {
     uneFiche = reponse.film;
 
-    $('#film-id').val(uneFiche.id);
+    $('#id').val(uneFiche.id);
     $('#title').val(uneFiche.title);
     $('#director').val(uneFiche.director);
     $('#category').val(uneFiche.category);
@@ -144,7 +144,7 @@ function hideDeletedFilm(id) {
 function updateFilmRow(film) {
   var id = film.id;
 
-  $('#image-'+id).html("img/" + film.image);
+  //$('#image-'+id).html("img/" + film.image);
   $('#title-'+id).html(film.title);
   $('#director-'+id).html(film.director);
   $('#category-'+id).html(film.category);
